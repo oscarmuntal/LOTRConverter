@@ -104,14 +104,15 @@ struct ContentView: View {
                             .foregroundStyle(.white)
                     }
                     .padding(.trailing)
-                    .sheet(isPresented: $showExchangeInfo) {
-                        ExchangeInfo()
-                    }
                 }
             }
 //            .border(.blue)
         }
+        .sheet(isPresented: $showExchangeInfo) {
+            ExchangeInfo()
+        }
     }
+    
 }
 
 #Preview {
