@@ -2,7 +2,7 @@
 //  SelectCurrency.swift
 //  LOTRConverter
 //
-//  Created by Òscar Muntal on 28/8/25.
+//  Created by Òscar Muntal on 1/9/25.
 //
 
 import SwiftUI
