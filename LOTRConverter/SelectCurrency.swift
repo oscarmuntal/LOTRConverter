@@ -48,6 +48,7 @@ struct SelectCurrency: View {
             }
             .padding()
             .multilineTextAlignment(.center)
+            .foregroundStyle(.black)
         }
     }
 }
