@@ -27,7 +27,7 @@ struct SelectCurrency: View {
                 // Currency icons
                 LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
                     ForEach(Currency.allCases) { currency in
-                        // mark the selected currency with a black border
+                        // Mark the selected currency with a black border
                         if selectedCurrency == currency {
                             CurrencyIcon(currencyImage: currency.image, currencyName: currency.name)
                                 .shadow(color: .black, radius: 10)
@@ -38,6 +38,9 @@ struct SelectCurrency: View {
                                 }
                         } else {
                             CurrencyIcon(currencyImage: currency.image, currencyName: currency.name)
+                                .onTapGesture {
+                                    selectedCurrency = currency
+                                }
                         }
                     }
                 }
