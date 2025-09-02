@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SelectCurrency: View {
     @Environment(\.dismiss) var dismiss
-    @State var selectedCurrency: Currency
+    @State var leftCurrency: Currency
+    @State var rightCurrency: Currency
     
     var body: some View {
         ZStack {
@@ -25,25 +26,7 @@ struct SelectCurrency: View {
                     .fontWeight(.bold)
                 
                 // Currency icons
-                LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
-                    ForEach(Currency.allCases) { currency in
-                        // Mark the selected currency with a black border
-                        if selectedCurrency == currency {
-                            CurrencyIcon(currencyImage: currency.image, currencyName: currency.name)
-                                .shadow(color: .black, radius: 10)
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .stroke(lineWidth: 3)
-                                        .opacity(0.5)
-                                }
-                        } else {
-                            CurrencyIcon(currencyImage: currency.image, currencyName: currency.name)
-                                .onTapGesture {
-                                    selectedCurrency = currency
-                                }
-                        }
-                    }
-                }
+                IconGrid(selectedCurrency: leftCurrency)
                 
                 
                 // Text
@@ -51,6 +34,7 @@ struct SelectCurrency: View {
                     .fontWeight(.bold)
                 
                 // Currency icons
+                IconGrid(selectedCurrency: rightCurrency)
                 
                 // Done button
                 Button("Done") {
@@ -70,7 +54,7 @@ struct SelectCurrency: View {
 
 #Preview {
     VStack {
-        SelectCurrency(selectedCurrency: .goldPenny)
+        SelectCurrency(leftCurrency: .silverPenny, rightCurrency: .goldPenny)
     }
 }
 
