@@ -15,11 +15,14 @@ struct ContentView: View {
     @State var leftAmount = ""
     @State var rightAmount = ""
     
-    @FocusState var leftTyping
-    @FocusState var rightTyping
+//    @FocusState var leftTyping
+//    @FocusState var rightTyping
     
     @State var leftCurrency: Currency = .silverPiece
     @State var rightCurrency: Currency = .goldPiece
+    
+    enum Field { case leftTyping, rightTyping }
+    @FocusState private var focusedField: Field?
     
     let currencyTip = CurrencyTip()
     
@@ -71,7 +74,8 @@ struct ContentView: View {
                         // Text field
                         TextField("Amount", text: $leftAmount)
                             .textFieldStyle(.roundedBorder)
-                            .focused($leftTyping)
+                            .focused($focusedField, equals: .leftTyping)
+                        
                     }
                     
                     // Equal sign
@@ -105,7 +109,7 @@ struct ContentView: View {
                         TextField("Amount", text: $rightAmount)
                             .textFieldStyle(.roundedBorder)
                             .multilineTextAlignment(.trailing)
-                            .focused($rightTyping)
+                            .focused($focusedField, equals: .rightTyping)
                     }
                 }
                 .padding()
@@ -129,16 +133,19 @@ struct ContentView: View {
                 }
             }
         }
+        .onTapGesture {
+            focusedField = nil
+        }
         .task {
             try? Tips.configure()
         }
         .onChange(of: leftAmount) { _, _ in
-            if leftTyping {
+            if focusedField == .leftTyping {
                 rightAmount = leftCurrency.convert(leftAmount, to: rightCurrency)
             }
         }
         .onChange(of: rightAmount) { _, _ in
-            if rightTyping {
+            if focusedField == .rightTyping {
                 leftAmount = rightCurrency.convert(rightAmount, to: leftCurrency)
             }
         }
