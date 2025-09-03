@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct IconGrid: View {
+    var currencySide: String
     @Binding var selectedCurrency: Currency
     
     var body: some View {
@@ -25,6 +26,8 @@ struct IconGrid: View {
                     CurrencyIcon(currencyImage: currency.image, currencyName: currency.name)
                         .onTapGesture {
                             selectedCurrency = currency
+                            UserDefaults.standard.setCurrency(currency, forKey: currencySide)
+                            //"leftCurrency"
                         }
                 }
             }
@@ -36,7 +39,7 @@ struct IconGrid: View {
     @Previewable @State var selectedCurrency: Currency = .goldPenny
     
     VStack {
-        IconGrid(selectedCurrency: $selectedCurrency)
+        IconGrid(currencySide: "leftCurrency", selectedCurrency: $selectedCurrency)
     }
 }
 

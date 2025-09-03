@@ -15,9 +15,6 @@ struct ContentView: View {
     @State var leftAmount = ""
     @State var rightAmount = ""
     
-//    @FocusState var leftTyping
-//    @FocusState var rightTyping
-    
     @State var leftCurrency: Currency = .silverPiece
     @State var rightCurrency: Currency = .goldPiece
     
@@ -131,6 +128,14 @@ struct ContentView: View {
                     }
                     .padding(.trailing)
                 }
+            }
+        }
+        .onAppear {
+            if let savedLeftCurrency = UserDefaults.standard.currency(forKey: "leftCurrency") {
+                leftCurrency = savedLeftCurrency
+            }
+            if let savedRightCurrency = UserDefaults.standard.currency(forKey: "rightCurrency") {
+                rightCurrency = savedRightCurrency
             }
         }
         .onTapGesture {

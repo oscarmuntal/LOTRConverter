@@ -26,7 +26,7 @@ struct SelectCurrency: View {
                     .fontWeight(.bold)
                 
                 // Currency icons
-                IconGrid(selectedCurrency: $topCurrency)
+                IconGrid(currencySide: "leftCurrency", selectedCurrency: $topCurrency)
                 
                 
                 // Text
@@ -35,7 +35,7 @@ struct SelectCurrency: View {
                     .padding(.top)
                 
                 // Currency icons
-                IconGrid(selectedCurrency: $bottomCurrency)
+                IconGrid(currencySide: "rightCurrency", selectedCurrency: $bottomCurrency)
                 
                 // Done button
                 Button("Done") {
