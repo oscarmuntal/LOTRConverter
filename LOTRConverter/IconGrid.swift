@@ -27,7 +27,6 @@ struct IconGrid: View {
                         .onTapGesture {
                             selectedCurrency = currency
                             UserDefaults.standard.setCurrency(currency, forKey: currencySide)
-                            //"leftCurrency"
                         }
                 }
             }

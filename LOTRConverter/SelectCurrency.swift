@@ -21,23 +21,17 @@ struct SelectCurrency: View {
                 .background(.brown)
             
             VStack {
-                // Text
                 Text("Select the currency you are starting with:")
                     .fontWeight(.bold)
                 
-                // Currency icons
                 IconGrid(currencySide: "leftCurrency", selectedCurrency: $topCurrency)
                 
-                
-                // Text
                 Text("Select the currency you would like to convert to:")
                     .fontWeight(.bold)
                     .padding(.top)
                 
-                // Currency icons
                 IconGrid(currencySide: "rightCurrency", selectedCurrency: $bottomCurrency)
                 
-                // Done button
                 Button("Done") {
                     dismiss()
                 }
